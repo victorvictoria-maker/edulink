@@ -1,0 +1,89 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// AUTHENTICATION
+
+enum UserRole {
+  STUDENT
+  HOD
+}
+
+model User {
+  id                  String        @id @default(cuid())
+  name                String?
+  email               String        @unique
+  password            String?
+  role                UserRole      @default(STUDENT)
+  matricNo            String?
+  department          String
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+  timeSlots           TimeSlot[]    @relation("TimeSlots")
+  appointmentsCreated Appointment[] @relation("CreatedAppointments")
+  appointmentsBooked  Appointment[] @relation("BookedAppointments")
+}
+
+model TimeSlot {
+  id        String   @id @default(cuid())
+  day       WeekDay
+  startTime DateTime
+  endTime   DateTime
+  hodId     String
+
+  hod User @relation("TimeSlots", fields: [hodId], references: [id])
+
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  appointments Appointment[]
+}
+
+model Appointment {
+  id          String            @id @default(cuid())
+  title       String
+  description String?
+  date        DateTime
+  status      AppointmentStatus @default(PENDING)
+  startTime   DateTime // Add this field
+  endTime     DateTime // Add this field
+
+  createdById String
+  bookedById  String?
+  timeSlotId  String
+
+  createdBy User     @relation("CreatedAppointments", fields: [createdById], references: [id])
+  bookedBy  User?    @relation("BookedAppointments", fields: [bookedById], references: [id])
+  timeSlot  TimeSlot @relation(fields: [timeSlotId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum AppointmentStatus {
+  PENDING
+  APPROVED
+  CANCELED
+  COMPLETED
+}
+
+enum WeekDay {
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
+  SUNDAY
+}
