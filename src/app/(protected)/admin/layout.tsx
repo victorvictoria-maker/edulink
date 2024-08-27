@@ -1,9 +1,10 @@
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 import Sidebar from "@/components/Sidebar";
 import DashboardNav from "@/components/dashboardNav";
 import DashboardFooter from "@/components/hospitals/dashboardfooter";
+import { getUserEmail } from "@/fetchdatafromdb/getuser";
 
 export const metadata = {
   title: "Admin Page",
@@ -15,15 +16,16 @@ const adminLinks = [
   { label: "View Appointments", path: "/admin/appointments" },
 ];
 
-const AdminLayout = async ({ children }: { children: ReactNode }) => {
-  const supabase = createClient();
-  const { data, error } = await supabase.auth.getUser();
+export default async function AdminLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  const { email, error } = await getUserEmail();
 
-  if (error || !data?.user) {
+  if (error || !email) {
     redirect("/login");
   }
-
-  const email = data.user?.email ?? "";
 
   return (
     <div>
@@ -35,6 +37,4 @@ const AdminLayout = async ({ children }: { children: ReactNode }) => {
       <DashboardFooter />
     </div>
   );
-};
-
-export default AdminLayout;
+}

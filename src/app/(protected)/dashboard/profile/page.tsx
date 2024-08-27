@@ -14,11 +14,11 @@ import {
 } from "@/serveractions/student";
 import { toast } from "react-toastify";
 
-interface ProfilePageProps {
-  email: string;
-}
+// interface PageProps {
+//   email: string;
+// }
 
-const ProfilePageContent: React.FC<ProfilePageProps> = ({ email }) => {
+function ProfilePage({ email }: { email: string }) {
   const [user, setUser] = useState<User | null>(null);
   const [isEditOpen, setEditOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
@@ -120,9 +120,6 @@ const ProfilePageContent: React.FC<ProfilePageProps> = ({ email }) => {
       )}
     </div>
   );
-};
+}
 
-const ProfilePage: React.FC<ProfilePageProps> = ({ email }) => {
-  return <ProfilePageContent email={email} />;
-};
 export default ProfilePage;

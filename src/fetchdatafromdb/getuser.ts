@@ -32,3 +32,17 @@ export const getAllUsers = async () => {
     return null;
   }
 };
+
+import { createClient } from "@/utils/supabase/server";
+
+export const getUserEmail = async () => {
+  const supabase = createClient();
+  const { data, error } = await supabase.auth.getUser();
+
+  if (error || !data?.user) {
+    return { email: null, error: error?.message };
+  }
+
+  const email = data.user?.email ?? "";
+  return { email, error: null };
+};

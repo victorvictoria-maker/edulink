@@ -4,6 +4,7 @@ import Sidebar from "@/components/Sidebar";
 import { ReactNode } from "react";
 import DashboardNav from "@/components/dashboardNav";
 import DashboardFooter from "@/components/hospitals/dashboardfooter";
+import { getUserEmail } from "@/fetchdatafromdb/getuser";
 
 export const metadata = {
   title: "Student Dashboard",
@@ -15,15 +16,16 @@ const studentLinks = [
   { label: "View Appointments", path: "/dashboard/appointments/view" },
 ];
 
-const StudentLayout = async ({ children }: { children: ReactNode }) => {
-  const supabase = createClient();
-  const { data, error } = await supabase.auth.getUser();
+export default async function StudentLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  const { email, error } = await getUserEmail();
 
-  if (error || !data?.user) {
+  if (error || !email) {
     redirect("/login");
   }
-
-  const email = data.user?.email ?? "";
 
   return (
     <div>
@@ -37,6 +39,4 @@ const StudentLayout = async ({ children }: { children: ReactNode }) => {
       <DashboardFooter />
     </div>
   );
-};
-
-export default StudentLayout;
+}

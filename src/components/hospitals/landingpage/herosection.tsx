@@ -10,8 +10,6 @@ import { LiaUniversitySolid } from "react-icons/lia";
 import { FaCheck } from "react-icons/fa";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { getAllHealthcareProvider } from "../../../fetchdatafromdb/gethospitals";
-import { getNumberOfHospitals } from "../../../serveractions/hospitals";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import Hospitaltypes from "./hospitaltypes";
 

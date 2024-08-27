@@ -14,11 +14,7 @@ import {
 } from "@/serveractions/student";
 import { toast } from "react-toastify";
 
-interface ProfilePageProps {
-  email: string;
-}
-
-const ProfilePage: React.FC<ProfilePageProps> = ({ email }) => {
+function ProfilePage({ email }: { email: string }) {
   const [user, setUser] = useState<User | null>(null);
   const [isEditOpen, setEditOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
@@ -40,7 +36,9 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ email }) => {
     fetchUserDetails();
   }, [email]);
 
-  const form = useForm<z.infer<typeof ProfileUpdateSchema>>({
+  const { register, handleSubmit } = useForm<
+    z.infer<typeof ProfileUpdateSchema>
+  >({
     resolver: zodResolver(ProfileUpdateSchema),
     defaultValues: {
       name: user?.name || "",
@@ -92,6 +90,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ email }) => {
   return (
     <div>
       <h2 className='text-2xl font-bold mb-4'>Profile</h2>
+      <p>{email}</p>
       <div className='mb-4'>
         <p>
           <strong>Name:</strong> {user.name}
@@ -115,6 +114,6 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ email }) => {
       )}
     </div>
   );
-};
+}
 
 export default ProfilePage;

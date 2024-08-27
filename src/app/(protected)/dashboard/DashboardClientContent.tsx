@@ -22,7 +22,7 @@ export default function DashboardPageClientContent({
       case "/dashboard/appointments/view":
         return <ViewAppointments />;
       default:
-        return <ProfilePage email={email} />;
+        return <ProfilePage email={email as string} />;
     }
   };
 
