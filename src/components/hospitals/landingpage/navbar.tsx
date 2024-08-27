@@ -27,7 +27,10 @@ const Navbar = () => {
           <Link href='/dashboard' className='hover:text-[#a30000]'>
             Dashboard
           </Link>
-          <Link href='/' className='hover:text-[#a30000]'>
+          <Link
+            href='/dashboard/appointments/view'
+            className='hover:text-[#a30000]'
+          >
             View Appointments
           </Link>
         </div>
@@ -73,7 +76,7 @@ const Navbar = () => {
             Dashboard
           </Link>
           <Link
-            href='/'
+            href='/dashboard/appointments/view'
             onClick={toggleMenu}
             className='text-2xl hover:text-[#a30000]'
           >

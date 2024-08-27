@@ -8,7 +8,7 @@ import {
 
 const DashboardFooter = () => {
   return (
-    <footer className='bg-gradient-to-r from-[#000] via-[#a30000] to-[#000]  flex items-center justify-between p-4 mt:2  md:mt-6'>
+    <footer className='bg-gradient-to-r from-[#000] via-[#a30000] to-[#000]  flex items-center justify-between p-4 pt:2  md:pt-6'>
       <div>
         <Image
           src='/images/logo.png'

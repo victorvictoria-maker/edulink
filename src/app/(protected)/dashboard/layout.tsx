@@ -6,10 +6,6 @@ import DashboardNav from "@/components/dashboardNav";
 import DashboardFooter from "@/components/hospitals/dashboardfooter";
 import { getUserEmail } from "@/fetchdatafromdb/getuser";
 
-export const metadata = {
-  title: "Student Dashboard",
-};
-
 const studentLinks = [
   { label: "Profile", path: "/dashboard" },
   { label: "Book Appointment", path: "/dashboard/appointments/book" },

@@ -72,11 +72,11 @@ const Herosection = () => {
             </p>
 
             <div className=' space-x-6 '>
-              <Button variant='blue' size='lg'>
-                <Link href='/login'>Book Apointment</Link>
+              <Button variant='red' size='lg'>
+                <Link href='/dashboard/appointments/book'>Book Apointment</Link>
               </Button>
               <Button variant='white' size='lg'>
-                <Link href='/login'>Get started</Link>
+                <Link href='/login'>Login</Link>
               </Button>
             </div>
           </motion.div>
@@ -87,7 +87,7 @@ const Herosection = () => {
           >
             <div className='w-1/3 relative'>
               <Image
-                src='/images/student1.png'
+                src='/images/student2.png'
                 alt='Small Image'
                 className='object-cover w-full h-full'
                 width={200}
@@ -97,7 +97,7 @@ const Herosection = () => {
 
             <div className='w-2/3 relative'>
               <Image
-                src='/images/student2.png'
+                src='/images/heroimg.png'
                 alt='Large Image'
                 className='object-cover w-full h-full'
                 width={300}
@@ -211,12 +211,12 @@ const Herosection = () => {
             <div className='feedback-cards grid grid-cols-1 md:grid-cols-2 gap-4'>
               <div className='feedback-card p-4 bg-blue-50'>
                 <p className='text-lg font-semibold'>Positive Feedback</p>
-                <div className='progress-bar bg-[#456DFF] w-3/4 h-2 rounded-full mt-2'></div>
+                <div className='progress-bar bg-[#a30000] w-3/4 h-2 rounded-full mt-2'></div>
                 <p className='mt-2 text-gray-700'>90% satisfaction rate</p>
               </div>
               <div className='feedback-card p-4 bg-blue-50'>
                 <p className='text-lg font-semibold'>Student Utilization</p>
-                <div className='progress-bar bg-[#04A5BA] w-4/5 h-2 rounded-full mt-2'></div>
+                <div className='progress-bar bg-[#104a36] w-4/5 h-2 rounded-full mt-2'></div>
                 <p className='mt-2 text-gray-700'>2,000+ other students</p>
               </div>
             </div>
@@ -225,7 +225,7 @@ const Herosection = () => {
       </motion.section>
 
       {/* Section 4: Hospital Types Section*/}
-      <Hospitaltypes />
+      {/* <Hospitaltypes /> */}
 
       {/* Section 5: What you would get Section */}
       <motion.section
@@ -240,30 +240,32 @@ const Herosection = () => {
             variants={fadeInUp}
           >
             <h2 className='text-xl md:text-3xl font-bold'>
-              Uncover the Best Healthcare Services
+              Connecting Students to Academic Leaders
             </h2>
             <p className='text-gray-700'>
-              Care Connect helps you find the best healthcare providers. From
-              hospitals to specialist clinics, we’ve got you covered.
+              EduLink streamlines the appointment process, making it easier for
+              students to connect with their Heads of Department and academic
+              advisors.
             </p>
             <ul className='space-y-2 text-gray-700'>
-              <li className='flex  items-center gap-1'>
-                <FaCheck /> Thousands of hospitals
+              <li className='flex items-center gap-1'>
+                <FaCheck /> Schedule meetings with academic heads
               </li>
-              <li className='flex  items-center gap-1'>
-                <FaCheck /> Nationwide coverage
+              <li className='flex items-center gap-1'>
+                <FaCheck /> Institution-wide access for all students
               </li>
-              <li className='flex  items-center gap-1'>
-                <FaCheck /> Trusted healthcare providers
+              <li className='flex items-center gap-1'>
+                <FaCheck /> Trusted by leading educational institutions
               </li>
-              <li className='flex  items-center gap-1'>
-                <FaCheck /> Easy search functionality
+              <li className='flex items-center gap-1'>
+                <FaCheck /> Simple and efficient booking system
               </li>
-              <li className='flex  items-center gap-1'>
-                <FaCheck /> Detailed hospital profiles
+              <li className='flex items-center gap-1'>
+                <FaCheck /> Easy to use and navigate
               </li>
             </ul>
-            <Button variant='blue' size='lg'>
+
+            <Button variant='red' size='lg'>
               <Link href='/hospitals'>Learn More</Link>
             </Button>
           </motion.div>
@@ -274,7 +276,7 @@ const Herosection = () => {
             <div className=' lg:w-13/  flex flex-col gap-4 w-full md:justify-center md:items-center  lg:flex-row'>
               <div>
                 <Image
-                  src='/images/medical-team-discussing-with-african-american-sick-patient.jpg'
+                  src='/images/student.jpg'
                   alt='Image 1'
                   className=' w-full h-full rounded-md'
                   width={300}
@@ -283,14 +285,14 @@ const Herosection = () => {
               </div>
               <div className='flex flex-col gap-4 md:flex-row lg:flex-col'>
                 <Image
-                  src='/images/clean-empty-hospital-ward-ready-receive-patients-reflecting-modern-medical-care.jpg'
+                  src='/images/happy-students.jpg'
                   alt='Image 1'
                   className=' w-full h-full rounded-md'
                   width={300}
                   height={500}
                 />
                 <Image
-                  src='/images/african-american-doctor-doing-checkup-visit-with-female-wheelchair.jpg'
+                  src='/images/happy-student.jpg'
                   alt='Image 1'
                   className=' w-full h-full rounded-md'
                   width={400}

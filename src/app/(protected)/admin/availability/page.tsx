@@ -108,17 +108,21 @@ const SetAvailability = () => {
             </Button>
           </div>
         ))}
-        <Button
-          type='button'
-          onClick={() => append({ day: "MONDAY", startTime: "", endTime: "" })}
-          variant='default'
-        >
-          Add Another Slot
-        </Button>
-        <Button type='submit'>Save Availability</Button>
-        <Link href='/admin'>
-          <Button>Go to dashboard</Button>
-        </Link>
+        <div className='flex flex-col md:flex-row  gap-2'>
+          <Button
+            type='button'
+            onClick={() =>
+              append({ day: "MONDAY", startTime: "", endTime: "" })
+            }
+            variant='default'
+          >
+            Add Another Slot
+          </Button>
+          <Button type='submit'>Save Availability</Button>
+          <Link href='/admin'>
+            <Button>Go to dashboard</Button>
+          </Link>
+        </div>
       </form>
     </div>
   );

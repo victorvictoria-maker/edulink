@@ -46,7 +46,7 @@ const hospitalTypes = [
   {
     title: "Physiotherapy Center",
     description: "Provides rehabilitation and physical therapy services.",
-    icon: "/images/wrist.png",
+    icon: "/images/brain.png",
   },
   {
     title: "Orthopedic Center",

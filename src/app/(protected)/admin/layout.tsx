@@ -6,10 +6,6 @@ import DashboardNav from "@/components/dashboardNav";
 import DashboardFooter from "@/components/hospitals/dashboardfooter";
 import { getUserEmail } from "@/fetchdatafromdb/getuser";
 
-export const metadata = {
-  title: "Admin Page",
-};
-
 const adminLinks = [
   { label: "Profile", path: "/admin" },
   { label: "Set Availability", path: "/admin/availability" },
@@ -28,9 +24,9 @@ export default async function AdminLayout({
   }
 
   return (
-    <div>
+    <div className='flex flex-col max-h-fit'>
       <DashboardNav email={email} />
-      <div className='flex bg-gray-100 min-h-screen'>
+      <div className='flex bg-gray-100 max-h-fit'>
         <Sidebar links={adminLinks} role='HOD' />
         <main className='flex-1 p-6'>{children}</main>
       </div>

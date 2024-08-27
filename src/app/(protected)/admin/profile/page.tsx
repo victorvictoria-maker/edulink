@@ -90,7 +90,6 @@ function ProfilePage({ email }: { email: string }) {
   return (
     <div>
       <h2 className='text-2xl font-bold mb-4'>Profile</h2>
-      <p>{email}</p>
       <div className='mb-4'>
         <p>
           <strong>Name:</strong> {user.name}
