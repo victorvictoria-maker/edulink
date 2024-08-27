@@ -62,7 +62,8 @@ const Herosection = () => {
               <span className='icon-love mr-1'>❤️</span> Education Comes First
             </p>
             <h1 className='text-4xl md:text-7xl font-bold md:pb-4'>
-              EduLink: <br /> Connecting Students with <br /> HODs
+              EduLink: <br /> Connecting Students with{" "}
+              <span className='lg:block'>HODs</span>
             </h1>
             <p className='md:pb-12 md:w-4/5 text-gray-700'>
               Our mission is to bridge the gap between students and academic
@@ -85,7 +86,7 @@ const Herosection = () => {
             className='images md:w-1/2 flex justify-center gap-2 md:gap-4 items-center mt-8 md:mt-0 relative'
             variants={fadeInUp}
           >
-            <div className='w-1/3 relative'>
+            <div className='w-1/3 relative block md:hidden lg:block'>
               <Image
                 src='/images/student2.png'
                 alt='Small Image'
