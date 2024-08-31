@@ -13,7 +13,7 @@ export default function DashboardPageClientContent({
   email: string;
 }) {
   const pathname = usePathname();
-  console.log(email);
+  // console.log(email);
 
   const renderContent = (): JSX.Element => {
     switch (pathname) {

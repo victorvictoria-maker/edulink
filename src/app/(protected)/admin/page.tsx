@@ -15,7 +15,7 @@ async function AdminPageContent() {
   }
 
   return (
-    <div className='flex bg-gray-100 min-h-screen'>
+    <div className='flex bg-gray-100 min-h-[100vh]'>
       <main className='flex-1 p-6'>
         <AdminPageClientContent email={email as string} />
         {/* email={email as string}  */}

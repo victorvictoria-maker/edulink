@@ -27,18 +27,18 @@ const ViewAppointments: React.FC = () => {
   if (error) return <div>{error}</div>;
 
   return (
-    <div className='container mx-auto p-4'>
+    <div className='container mx-auto p-4 '>
       <h1 className='text-2xl font-bold mb-4'>Your Appointments</h1>
       {appointments.length === 0 ? (
         <p className='text-center text-gray-600'>You have no appointments.</p>
       ) : (
         <ul className='space-y-4'>
           {appointments.map((appointment) => {
-            // Convert startTime and endTime to local time from UTC
+            // Conversion of startTime and endTime to local time from UTC
             const startTime = new Date(appointment.startTime);
             const endTime = new Date(appointment.endTime);
 
-            // Use local time for displaying the appointment times
+            // Local time for displaying the appointment times
             const localStartTime = startTime.toLocaleTimeString("en-NG", {
               hour: "2-digit",
               minute: "2-digit",
@@ -62,46 +62,12 @@ const ViewAppointments: React.FC = () => {
                   appointment.status === "PENDING"
                     ? "bg-yellow-100 border-yellow-500"
                     : "bg-green-100 border-green-500"
+                } ${
+                  appointment.status === "CANCELED"
+                    ? "bg-red-100 border-red-500"
+                    : "bg-green-100 border-green-500"
                 } border-2`}
               >
-                {/* <div className='flex flex-col space-y-2'>
-                  <p className='text-lg font-semibold'>
-                    <strong>Title:</strong> {appointment.title}
-                  </p>
-                  <p>
-                    <strong>Date:</strong>{" "}
-                    {new Date(appointment.date).toLocaleDateString()}
-                  </p>
-                  <p>
-                    <strong>Status:</strong> {appointment.status}
-                  </p>
-                  <p>
-                    <strong>Time Slot:</strong> {localStartTime} -{" "}
-                    {localEndTime}
-                  </p>
-                  {appointment.startTime.toLocaleString("en-NG", {
-                    weekday: "short",
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric",
-                    hour: "2-digit",
-                    minute: "2-digit",
-                    hour12: true,
-                    timeZone: "Africa/Lagos",
-                  })}{" "}
-                  -
-                  {appointment.endTime.toLocaleString("en-NG", {
-                    weekday: "short",
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric",
-                    hour: "2-digit",
-                    minute: "2-digit",
-                    hour12: true,
-                    timeZone: "Africa/Lagos",
-                  })}
-                </div> */}
-
                 <div className='flex flex-col space-y-2'>
                   <p className='text-lg font-semibold'>
                     <strong>Title:</strong> {appointment.title}
@@ -115,7 +81,20 @@ const ViewAppointments: React.FC = () => {
                     })}
                   </p>
                   <p>
-                    <strong>Status:</strong> {appointment.status}
+                    <strong>Status:</strong>{" "}
+                    <span
+                      className={` ${
+                        appointment.status === "PENDING"
+                          ? "text-yellow-600 font-semibold"
+                          : "text-green-600 font-semibold"
+                      } ${
+                        appointment.status === "CANCELED"
+                          ? "text-red-600 font-semibold"
+                          : "text-green-600 font-semibold"
+                      }`}
+                    >
+                      {appointment.status}
+                    </span>
                   </p>
                   <p>
                     <strong>Time Slot:</strong>{" "}

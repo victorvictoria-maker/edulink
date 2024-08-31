@@ -12,7 +12,7 @@ const DashboardNav = ({ email }: { email: string }) => {
       {/* Center: Finding Hospitals Line */}
       <div className='flex-1 text-center hidden lg:block'>
         <div className='text-white text-xl font-semibold animate-slideInLeft'>
-          Connect with your Head of Department
+          Connecting Students with Head of Department
         </div>
       </div>
 

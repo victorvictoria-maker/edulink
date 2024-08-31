@@ -48,20 +48,24 @@ const BookAppointment = () => {
 
   const onSubmit = async (formData: BookingFormData) => {
     setIsSubmitting(true);
-    // console.log("hi"); // This should now show up
+
     try {
-      await createBooking(formData);
-      toast.success("Booking successful!");
+      const result = await createBooking(formData);
+      if ("error" in result) {
+        toast.error(result.error);
+      } else {
+        toast.success("Booking successful!");
+      }
     } catch (error) {
       console.error("Error creating booking:", error);
-      toast.error("Error creating booking");
+      toast.error("An unexpected error occurred while creating the booking.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <div className='p-4 max-w-2xl mx-auto'>
+    <div className='p-4 max-w-2xl mx-auto '>
       <h1 className='text-2xl font-bold mb-4'>Book an Appointment</h1>
 
       <div className='mt-6'>

@@ -11,33 +11,59 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui/select";
+import { FaTrashAlt } from "react-icons/fa";
 import { toast } from "react-toastify";
-import { createAvailability } from "@/serveractions/admin";
+import {
+  createAvailability,
+  deleteAvailabilityById,
+  fetchAvailability,
+} from "@/serveractions/admin";
 import { AvailabilitySchema } from "../../../../../schemas";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { AvailableSlot } from "../../../../../types";
+import { WeekDay } from "@prisma/client";
 
-// Define the schema
-// const AvailabilitySchema = z.object({
-//   slots: z.array(
-//     z.object({
-//       day: z.enum([
-//         "MONDAY",
-//         "TUESDAY",
-//         "WEDNESDAY",
-//         "THURSDAY",
-//         "FRIDAY",
-//         "SATURDAY",
-//         "SUNDAY",
-//       ]),
-//       startTime: z.string(),
-//       endTime: z.string(),
-//     })
-//   ),
-// });
+const dayMap: Record<WeekDay, string> = {
+  MONDAY: "Monday",
+  TUESDAY: "Tuesday",
+  WEDNESDAY: "Wednesday",
+  THURSDAY: "Thursday",
+  FRIDAY: "Friday",
+  SATURDAY: "Saturday",
+  SUNDAY: "Sunday",
+};
 
 type AvailabilityFormType = z.infer<typeof AvailabilitySchema>;
 
 const SetAvailability = () => {
+  const [availableSlots, setAvailableSlots] = useState<AvailableSlot[]>([]);
+  useEffect(() => {
+    const fetchAvailableSlots = async () => {
+      try {
+        const slots: AvailableSlot[] = await fetchAvailability();
+        setAvailableSlots(slots);
+      } catch (error) {
+        toast.error("Error fetching available slots");
+      }
+    };
+
+    fetchAvailableSlots();
+  }, []);
+
+  const deleteSlot = async (slotId: string) => {
+    try {
+      await deleteAvailabilityById(slotId);
+
+      setAvailableSlots((prevSlots) =>
+        prevSlots.filter((slot) => slot.id !== slotId)
+      );
+    } catch (error) {
+      console.error("Failed to delete slot:", error);
+      toast.error("Failed to delete slot");
+    }
+  };
+
   const { control, handleSubmit, reset } = useForm<AvailabilityFormType>({
     resolver: zodResolver(AvailabilitySchema),
     defaultValues: {
@@ -65,6 +91,33 @@ const SetAvailability = () => {
 
   return (
     <div>
+      <div className='mt-6 mb-4'>
+        <h2 className='text-2xl font-bold mb-2'>Slots Set</h2>
+        <ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+          {availableSlots.length > 0 ? (
+            availableSlots.map((slot) => (
+              <li
+                key={slot.id}
+                className='flex justify-between items-center w-full border p-2 rounded mb-2 '
+              >
+                <p>
+                  {dayMap[slot.day]} - {slot.startTime} to {slot.endTime}
+                </p>
+                <button
+                  className='text-red-500 hover:text-red-700'
+                  onClick={() => deleteSlot(slot.id)}
+                  aria-label='Delete slot'
+                >
+                  <FaTrashAlt />
+                </button>
+              </li>
+            ))
+          ) : (
+            <p>No available slots</p>
+          )}
+        </ul>
+      </div>
+
       <h2 className='text-2xl font-bold mb-4'>Set Availability</h2>
       <form onSubmit={handleSubmit(onSubmitForm)} className='space-y-4'>
         {fields.map((field, index) => (

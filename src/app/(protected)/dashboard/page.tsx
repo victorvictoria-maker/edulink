@@ -15,7 +15,7 @@ async function DashboardPageContent() {
   }
 
   return (
-    <div className='flex bg-gray-100 min-h-fit'>
+    <div className='flex bg-gray-100 min-h-[100vh]'>
       <main className='flex-1 p-6'>
         <DashboardPageClientContent email={email} />
       </main>

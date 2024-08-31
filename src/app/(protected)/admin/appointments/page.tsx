@@ -5,8 +5,7 @@ import {
   fetchAllAppointments,
   updateAppointmentStatus,
 } from "@/serveractions/admin";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 const ViewAppointmentsForHod: React.FC = () => {
   const [appointments, setAppointments] = useState<any[]>([]);
@@ -20,11 +19,12 @@ const ViewAppointmentsForHod: React.FC = () => {
         if (Array.isArray(data)) {
           setAppointments(data);
         } else {
-          throw new Error("Invalid data format");
+          // throw new Error("Invalid data format");
+          toast.error("Invalid data format");
         }
       } catch (err: any) {
         setError("Failed to fetch appointments");
-        toast.error("Failed to fetch appointments");
+        toast.error(err);
       } finally {
         setLoading(false);
       }
@@ -69,8 +69,7 @@ const ViewAppointmentsForHod: React.FC = () => {
   );
 
   return (
-    <div className='container mx-auto p-4'>
-      <ToastContainer />
+    <div className='container mx-auto p-4 '>
       <h1 className='text-2xl font-bold mb-4'>All Appointments</h1>
 
       {/* Section for Pending Appointments */}
@@ -138,7 +137,7 @@ const ViewAppointmentsForHod: React.FC = () => {
       )}
 
       {/* Section for Attended Appointments */}
-      <h2 className='text-xl font-semibold mb-4'>Attended Appointments</h2>
+      <h2 className='text-xl font-semibold mb-4'>Approved Appointments</h2>
       {attendedAppointments.length === 0 ? (
         <p className='text-center text-gray-600'>
           No attended appointments found.

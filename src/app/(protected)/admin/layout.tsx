@@ -24,9 +24,9 @@ export default async function AdminLayout({
   }
 
   return (
-    <div className='flex flex-col max-h-fit'>
+    <div className='flex flex-col h-full'>
       <DashboardNav email={email} />
-      <div className='flex bg-gray-100 max-h-fit'>
+      <div className='flex bg-gray-100 min-h-[100vh]'>
         <Sidebar links={adminLinks} role='HOD' />
         <main className='flex-1 p-6'>{children}</main>
       </div>

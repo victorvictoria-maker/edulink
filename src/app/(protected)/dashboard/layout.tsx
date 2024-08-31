@@ -24,10 +24,10 @@ export default async function StudentLayout({
   }
 
   return (
-    <div>
+    <div className='h-full'>
       <DashboardNav email={email} />
 
-      <div className='flex bg-gray-100 min-h-screen'>
+      <div className='flex bg-gray-100  min-h-[100vh]'>
         <Sidebar links={studentLinks} role='Student' />
         <main className='flex-1 p-6'>{children}</main>
       </div>

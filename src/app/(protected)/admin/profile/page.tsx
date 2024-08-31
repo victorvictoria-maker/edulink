@@ -59,11 +59,11 @@ function ProfilePage({ email }: { email: string }) {
         const result = await updateUserProfile(data);
         if (result.error) {
           toast.error(result.error);
-          // Revert the optimistic update if the update failed
+
           setUser(user);
         } else {
           toast.success(result.success);
-          // Optimistically update the UI
+          // UI update
           const updatedUser: User = {
             ...user!,
             ...data,
@@ -71,13 +71,12 @@ function ProfilePage({ email }: { email: string }) {
           setUser(updatedUser);
 
           handleEditClose();
-          // Optionally refetch user details after successful update
+
           const refreshedUser = await fetchUserDetailsByEmail(email);
           setUser(refreshedUser);
         }
       } catch (err) {
         toast.error("Failed to update profile.");
-        // Revert the optimistic update if the update failed
         setUser(user);
       }
     });
